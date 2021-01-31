@@ -1,11 +1,17 @@
-# Very short description of the package
+# Add billing functionalities to your web application with ease using bill-me package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 [![Build Status](https://img.shields.io/travis/epmnzava/bill-me/master.svg?style=flat-square)](https://travis-ci.org/epmnzava/bill-me)
 [![Quality Score](https://img.shields.io/scrutinizer/g/epmnzava/bill-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/epmnzava/bill-me)
 [![Total Downloads](https://img.shields.io/packagist/dt/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what PSRs you support to avoid any confusion with users and contributors.
+A laravel package that lets you quickly add billing functionalities to your laravel web application.
+
+## Features
+ Order Management
+ Invoice Management
+ Receipt Management
+
 
 ## Installation
 
@@ -18,7 +24,7 @@ composer require epmnzava/bill-me
 ## Usage
 
 ``` php
-// Usage description here
+// how to use the package coming soon
 ```
 
 ### Testing
@@ -48,6 +54,3 @@ If you discover any security related issues, please email epmnzava@gmail.com ins
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-## Laravel Package Boilerplate
-
-This package was generated using the [Laravel Package Boilerplate](https://laravelpackageboilerplate.com).
