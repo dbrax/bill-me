@@ -9,9 +9,9 @@ A laravel package that lets you quickly add billing functionalities to your lara
 
 
 ## Features
- + Order Management
- + Invoice Management
- + Receipt Management
+ + **Order Management**
+ + **Invoice Management**
+ + **Receipt Management**
 
 
 ## Installation
