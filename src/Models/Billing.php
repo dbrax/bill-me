@@ -12,6 +12,6 @@ namespace Epmnzava\BillMe\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Billing extends Model
 {
 }
