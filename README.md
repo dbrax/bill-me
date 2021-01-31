@@ -1,8 +1,8 @@
 # Add billing functionalities to your web application with ease using bill-me package
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
-[![Build Status](https://img.shields.io/travis/epmnzava/bill-me/master.svg?style=flat-square)](https://travis-ci.com/github/dbrax/bill-me)
-[![Quality Score](https://img.shields.io/scrutinizer/g/epmnzava/bill-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/dbrax/bill-me/)
+[![Build Status](https://travis-ci.com/dbrax/bill-me.svg?branch=main)](https://travis-ci.com/dbrax/bill-me)
+[![Quality Score](https://img.shields.io/scrutinizer/g/epmnzava/bill-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/dbrax/bill-me)
 [![Total Downloads](https://img.shields.io/packagist/dt/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 
 A laravel package that lets you quickly add billing functionalities to your laravel web application.
