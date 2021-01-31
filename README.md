@@ -5,13 +5,13 @@
 [![Quality Score](https://img.shields.io/scrutinizer/g/dbrax/bill-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/dbrax/bill-me)
 [![Total Downloads](https://img.shields.io/packagist/dt/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 
-A laravel package that lets you quickly add billing functionalities to your laravel web application.
+*A laravel package that lets you quickly add billing functionalities to your laravel web application.*
 
 
 ## Features
- - Order Management
- - Invoice Management
- - Receipt Management
+ + Order Management
+ + Invoice Management
+ + Receipt Management
 
 
 ## Installation
