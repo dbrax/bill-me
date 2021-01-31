@@ -1,4 +1,4 @@
-# Add billing functionalities to your web application with ease using bill-me package
+# Add Billing Functionalities To Your Web Application.
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 [![Build Status](https://travis-ci.com/dbrax/bill-me.svg?branch=main)](https://travis-ci.com/dbrax/bill-me)
