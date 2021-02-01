@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Author: Emmanuel Paul Mnzava
+ * Twitter: @epmnzava
+ * Github: https://github.com/dbrax/bill-me
+ * Email: epmnzava@gmail.com
+ * 
+ */
+
 namespace Epmnzava\BillMe\Tests;
 
 use Orchestra\Testbench\TestCase;
@@ -12,7 +20,7 @@ class ExampleTest extends TestCase
     {
         return [BillMeServiceProvider::class];
     }
-    
+
     /** @test */
     public function true_is_true()
     {
