@@ -32,6 +32,22 @@ class BillMeServiceProvider extends ServiceProvider
                 __DIR__ . '/../config/config.php' => config_path('bill-me.php'),
             ], 'config');
 
+
+           //publishing migrations here..
+        if (! class_exists('CreateOrdersTable') && ! class_exists('CreateOrderItemsTable') && ! class_exists('CreateInvoicesTable') && ! class_exists('CreatePaymentMethodTable') && ! class_exists('CreatePaymentsTable')) {
+                $this->publishes([
+                  __DIR__ . '/../database/migrations/create_orders_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_orders_table.php'),
+                  __DIR__ . '/../database/migrations/create_order_items_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_order_items_table.php'),
+                  __DIR__ . '/../database/migrations/create_invoices_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_invoices_table.php'),
+                  __DIR__ . '/../database/migrations/create_payment_method_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_payment_method_table.php'),
+                  __DIR__ . '/../database/migrations/create_payments_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_payments_table.php'),
+
+                ], 'migrations');
+              }
+
+        
+
+
             // Publishing the views.
             /*$this->publishes([
                 __DIR__.'/../resources/views' => resource_path('views/vendor/bill-me'),
