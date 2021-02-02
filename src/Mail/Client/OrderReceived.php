@@ -24,12 +24,10 @@ class OrderReceived extends Mailable
     public function __construct(Order $order)
     {
         $this->order = $order;
-
     }
 
     public function build()
     {
         return $this->markdown('billme::emails.receivedorder');
     }
-
 }
