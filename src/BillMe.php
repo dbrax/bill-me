@@ -66,6 +66,8 @@ class BillMe
         Mail::to(["address" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
 
         Mail::to(["address" => $order->email, "name" => $order->email])->send(new NewOrder($order));
+
+        $this->createInvoice($order);
     }
 
 
