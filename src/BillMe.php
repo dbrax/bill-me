@@ -22,59 +22,66 @@ use Mail;
 class BillMe
 {
 
-    
+
 
     /** A function that triggers order creation */
-    public function createOrder(string $firstname,string $lastname,string $email,
-    string $mobile_number,int $amount,string $payment_method,string $notes,string $address, Array $orderitems ){
+    public function createOrder(
+        string $firstname,
+        string $lastname,
+        string $email,
+        string $mobile_number,
+        int $amount,
+        string $payment_method,
+        string $notes,
+        string $address,
+        array $orderitems
+    ) {
 
-      $order=new Order;
-      $order->firstname=$firstname;
-      $order->lastname=$lastname;
-      $order->email=$email;
-      $order->mobile_number=$mobile_number;
-      $order->amount=$amount;
-      $order->payment_method=$payment_method;
-      $order->status="Pending";
-      $order->notes=$notes;
-      $order->address=$address;
-      $order->save();
-     
-      // order items ... here
+        $order = new Order;
+        $order->firstname = $firstname;
+        $order->lastname = $lastname;
+        $order->email = $email;
+        $order->mobile_number = $mobile_number;
+        $order->amount = $amount;
+        $order->payment_method = $payment_method;
+        $order->status = "Pending";
+        $order->notes = $notes;
+        $order->address = $address;
+        $order->save();
 
-      if(!empty($orderitems))
-      {
-         /* $orderItem=new OrderItem();
+        // order items ... here
+
+        if (!empty($orderitems)) {
+            /* $orderItem=new OrderItem();
           $orderItem->order_id=$order->id;
           $orderItem->amount=$orderitems->amount;
           $orderItem->quantity=$orderitems->quantity;
 
 
           */
-      }
+        }
 
-      Mail::to(["address" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
+        Mail::to(["address" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
 
-      Mail::to(["address" => $order->email, "name" => $order->email])->send(new NewOrder($order));
-
-
+        Mail::to(["address" => $order->email, "name" => $order->email])->send(new NewOrder($order));
     }
 
 
 
 
-    public function createInvoice(Order $order){
+    public function createInvoice(Order $order)
+    {
 
-        $invoice=new Invoice;
-        $invoice->orderid=$order->id;
-        $invoice->firstname=$order->firstname;
-        $invoice->lastname=$order->lastname;
-        $invoice->mobile_number=$order->mobile_number;
-        $invoice->email=$order->email;
-        $invoice->amount=$order->amount;
-        $invoice->status=$order->status;
-        $invoice->address=$order->address;
-        $invoice->date=date('Y-m-d');
+        $invoice = new Invoice;
+        $invoice->orderid = $order->id;
+        $invoice->firstname = $order->firstname;
+        $invoice->lastname = $order->lastname;
+        $invoice->mobile_number = $order->mobile_number;
+        $invoice->email = $order->email;
+        $invoice->amount = $order->amount;
+        $invoice->status = $order->status;
+        $invoice->address = $order->address;
+        $invoice->date = date('Y-m-d');
         $invoice->save();
 
 
@@ -82,16 +89,8 @@ class BillMe
 
 
 
-        $order_update=Order::find($order->id);
-       $order_update->invoiceid=$invoice->id;
-       $order_update->save();
-
-        
-
-
+        $order_update = Order::find($order->id);
+        $order_update->invoiceid = $invoice->id;
+        $order_update->save();
     }
-
-  
-
-
 }
