@@ -47,6 +47,8 @@ class BillMe
         $order->status = "Pending";
         $order->notes = $notes;
         $order->address = $address;
+        $order->date = date("Y-m-d");
+
         $order->save();
 
         // order items ... here
