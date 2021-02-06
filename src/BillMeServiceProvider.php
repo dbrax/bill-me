@@ -28,7 +28,7 @@ class BillMeServiceProvider extends ServiceProvider
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'bill-me');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'billme');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
