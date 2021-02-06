@@ -8,7 +8,7 @@
  * 
  */
 
-namespace Epmnzava\Mail\Merchant;
+namespace Epmnzava\BillMe\Mail\Merchant;
 
 use Epmnzava\BillMe\Models\Order;
 use Illuminate\Bus\Queueable;

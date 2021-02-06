@@ -8,7 +8,7 @@
  * 
  */
 
-namespace Epmnzava\Mail\Client\Invoices;
+namespace Epmnzava\BillMe\Mail\Client\Invoices;
 
 use Epmnzava\BillMe\Models\Order;
 use Epmnzava\BillMe\Models\Invoice;

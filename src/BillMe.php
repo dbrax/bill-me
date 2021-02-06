@@ -13,9 +13,9 @@ namespace Epmnzava\BillMe;
 use Epmnzava\BillMe\Models\Order;
 use Epmnzava\BillMe\Models\Invoice;
 use Epmnzava\BillMe\Models\OrderItem;
-use Epmnzava\Mail\Client\Invoices\InvoiceCreated;
-use Epmnzava\Mail\Client\OrderReceived;
-use Epmnzava\Mail\Merchant\NewOrder;
+use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
+use Epmnzava\BillMe\Mail\Client\OrderReceived;
+use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 
 use Mail;
 
