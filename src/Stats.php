@@ -23,7 +23,8 @@ class Stats
 {
 
     public function total_orders(){
-
+    
+        return Order::count();
     }
 
     public function total_cancelled_orders(){
