@@ -16,23 +16,33 @@ use Epmnzava\BillMe\Models\OrderItem;
 use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
 use Epmnzava\BillMe\Mail\Client\OrderReceived;
 use Epmnzava\BillMe\Mail\Merchant\NewOrder;
+use Carbon\Carbon;
 
 use Mail;
 
 class Stats
 {
 
+    /**
+     * Gets total count of orders 
+     */
     public function total_orders()
     {
 
         return Order::count();
     }
 
+    /**
+     * Gets total count of cancelled orders 
+     */
     public function total_cancelled_orders()
     {
         return Order::where('status', 'cancelled')->count();
     }
 
+    /**
+     * Gets total count of pending orders 
+     */
     public function total_pending_orders()
     {
         return Order::where('status', 'pending')->count();
@@ -43,23 +53,67 @@ class Stats
         return Order::where('status', 'completed')->count();
     }
 
+    /**
+     * Gets total count of orders today
+     */
 
     public function total_orders_today()
     {
+        return Order::where('date', date('Y-m-d'))->count();
     }
+
+
+    /**
+     * Gets total count of orders on a particular day
+     */
+    public function total_orders_on_date($date)
+    {
+        return Order::where('date', $date)->count();
+    }
+
+    /**
+     * Gets total count of orders on this month
+     */
 
     public function total_orders_this_month()
     {
         return Order::whereMonth('date', '=', date('m'))->whereYear('date', '=', date('Y'))->count();
     }
 
-    public function total_orders_this_year()
+
+    /**
+     * Gets total count of orders on a particular month and year
+     */
+    public function total_orders_on_month($month, $year)
     {
-        return Order::whereYear('date', '=', date('Y'))->count();
+        return Order::whereMonth('date', '=', $month)->whereYear('date', '=', $year)->count();
     }
 
 
+    /**
+     * Gets total count of orders on given year
+     */
+    public function total_orders_on_year($year)
+    {
+        return Order::whereYear('date', '=', $year)->count();
+    }
+
+
+    /**
+     * Gets total count of invoices
+     */
     public function total_invoices()
     {
+        return Invoice::count();
+    }
+
+
+    /**
+     * Gets total count of invoices today
+     */
+
+    public function total_invoices_today()
+    {
+        return Invoice::where('date', date('Y-m-d'))->count();
     }
 }
