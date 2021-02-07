@@ -19,7 +19,7 @@ use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 
 use Mail;
 
-class BillMe
+class BillMe extends Queries
 {
 
 

@@ -19,38 +19,29 @@ use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 
 use Mail;
 
-class Stats 
+class Queries extends Stats
 {
 
-    public function total_orders(){
+    public function orders()
+    {
 
-    }
-
-    public function total_cancelled_orders(){
-
-    }
-
-    public function total_pending_orders(){
-
-    }
-
-    public function total_completed_orders(){
-
+        return Order::all();
     }
 
 
-    public function total_orders_today(){
+    public function orders_today()
+    {
+    }
+
+    public function pending_orders(){
+
+    }
+
+    public function cancelled_orders(){
+
+    }
+
+    public function completed_orders(){
         
     }
-
-    public function total_orders_this_month(){
-        
-    }
-
-    public function total_orders_this_year(){
-        
-    }
-
-
-    
 }
