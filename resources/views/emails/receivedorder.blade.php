@@ -4,5 +4,5 @@ Hello {{$order->firstname}}
 Your order has been received and is being processed 
 
 Thanks,<br>
-{{ config('billme.org_name') }}<br>
+{{ config('bill-me.org_name') }}<br>
 @endcomponent

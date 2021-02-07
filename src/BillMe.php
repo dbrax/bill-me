@@ -64,7 +64,7 @@ class BillMe extends Queries
         }
 
         //perform checks if the user needs email service use a separate function here add bulk sms functionality ...
-        if (config('billme.send_mail')==1) {
+        if (config('bill-me.send_mail')==1) {
             Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new OrderReceived($order));
             Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new NewOrder($order));
         }
@@ -90,7 +90,7 @@ class BillMe extends Queries
         $invoice->date = date('Y-m-d');
         $invoice->save();
 
-        if (config('billme.send_mail'))
+        if (config('bill-me.send_mail'))
             Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
 
 
