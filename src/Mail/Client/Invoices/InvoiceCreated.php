@@ -12,7 +12,7 @@ namespace Epmnzava\BillMe\Mail\Client\Invoices;
 
 use Epmnzava\BillMe\Models\Order;
 use Epmnzava\BillMe\Models\Invoice;
-
+use PDF;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -22,6 +22,7 @@ class InvoiceCreated extends Mailable
     use Queueable, SerializesModels;
 
     public Invoice $invoice;
+    public   $pdf;
 
     public function __construct(Invoice $invoice)
     {
@@ -30,6 +31,11 @@ class InvoiceCreated extends Mailable
 
     public function build()
     {
-        return $this->markdown('billme::emails.invoices.invoice_created');
+        $this->pdf = PDF::loadView('billme::emails.attachments.createdInvoice',[]);
+
+        return $this->markdown('billme::emails.invoices.invoice_created') ->attachData(
+            $this->pdf, 
+            'name.pdf' // could be one of many file types 
+        );;
     }
 }
