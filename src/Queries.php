@@ -29,36 +29,56 @@ class Queries extends Stats
     }
 
 
+    public function orders_orderby($orderby)
+    {
+
+    }
+
+
+
     public function orders_today()
+    {
+        return Order::where('date',date('Y-m-d'))->get();
+    }
+
+    public function pending_orders()
+    {
+        return Order::where('status',"pending")->get();
+
+    }
+
+    public function cancelled_orders()
+    {
+        return Order::where('status',"cancelled")->get();
+
+    }
+
+    public function completed_orders()
+    {
+        return Order::where('status',"complete")->get();
+
+    }
+
+    public function getOrderById($orderid)
+    {
+        return Order::find($orderid);
+    }
+
+    public function getOrdersOnDate($date)
+    {
+        return Order::where('date',$date)->get();
+
+    }
+    
+
+    public function getOrdersOnDateRange($startdate, $enddate)
     {
     }
 
-    public function pending_orders(){
 
-    }
+    public function getInvoiceById($invoiceid)
+    {
+        return Invoice::find($invoiceid);
 
-    public function cancelled_orders(){
-
-    }
-
-    public function completed_orders(){
-        
-    }
-
-    public function getOrderById($orderid){
-        
-    }
-
-    public function getOrdersOnDate($date){
-        
-    }
-
-    public function getOrdersOnDateRange($startdate,$enddate){
-        
-    }
-
-
-    public function getInvoiceById($invoiceid){
-        
     }
 }
