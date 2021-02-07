@@ -31,11 +31,13 @@ class InvoiceCreated extends Mailable
 
     public function build()
     {
-        $this->pdf = PDF::loadView('billme::emails.attachments.createdInvoice',[]);
+        //$this->pdf = PDF::loadView('billme::emails.attachments.createdInvoice',[]);
 
-        return $this->markdown('billme::emails.invoices.invoice_created') ->attachData($this->pdf, 'invoice.pdf', [
+        return $this->markdown('billme::emails.invoices.invoice_created');
+        
+        /*->attachData($this->pdf, 'invoice.pdf', [
             'mime' => 'application/pdf',
         ] 
-        );;
+        );;*/
     }
 }
