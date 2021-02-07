@@ -2,6 +2,13 @@
 
 All notable changes to `bill-me` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 1.0.0 - 2021-02-07
 
-- initial release
+- Pre-release
++ Order Management
++ Invoice Management
++ Receipt Management
++ Order and Invoice Statistics
++ Mail and Sms Notifications
++ Order and Invoice Queries
+
