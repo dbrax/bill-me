@@ -63,9 +63,12 @@ class BillMe
           */
         }
 
-        Mail::to(["address" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
+        //perform checks if the user needs email service use a separate function here add bulk sms functionality ...
+        if (config('billme.send_mail')) {
+            Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new OrderReceived($order));
+            Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new NewOrder($order));
+        }
 
-        Mail::to(["address" => $order->email, "name" => $order->email])->send(new NewOrder($order));
 
         $this->createInvoice($order);
     }
@@ -88,13 +91,99 @@ class BillMe
         $invoice->date = date('Y-m-d');
         $invoice->save();
 
+        if (config('billme.send_mail'))
+            Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
 
-        Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
 
 
 
         $order_update = Order::find($order->id);
         $order_update->invoiceid = $invoice->id;
         $order_update->save();
+    }
+
+
+    /**
+     * Function that gets you invoice details by using orderid
+     */
+
+    public function getInvoiceByOrderId($orderid)
+    {
+        return Invoice::where('orderid', $orderid)->first();
+    }
+
+    /**
+     * Function that gets you invoice details by using invoiceid
+     */
+
+    public function getInvoiceByInvoiceId($invoiceid)
+    {
+        return Invoice::find($invoiceid);
+    }
+
+
+
+    /**
+     * Function that gets you order details by using orderid
+     */
+
+    public function getOrderByOrderId($orderid)
+    {
+        return Order::find($orderid);
+    }
+
+    /**
+     * Function that gets you order details by using invoiceid
+     */
+
+    public function getOrderByInvoiceId($invoiceid)
+    {
+        return Order::find(Invoice::where('id', $invoiceid)->first()->orderid);
+    }
+
+
+    /**
+     * Function that updates invoice status and returns void
+     */
+    public function update_invoice_status(string $invoiceid, string $status): void
+    {
+        $invoice = Invoice::find($invoiceid);
+        $invoice->status = $status;
+        $invoice->save();
+    }
+
+
+    public function update_invoice(string $invoiceid, Invoice $invoice): void
+    {
+    }
+
+
+
+
+    /**
+     * Function that updates order status and returns void
+     */
+    public function update_order_status(string $orderid, string $status): void
+    {
+        $order = Order::find($orderid);
+        $order->status = $status;
+        $order->save();
+    }
+
+
+
+    public function update_order(string $order_id, Order $order): void
+    {
+    }
+
+    public function cancel_order(string $orderid) : void
+    {
+        $order = Order::find($orderid);
+        $order->status ="CANCELLED";
+        $order->save();
+    }
+
+    public function delete_order(string $order_id)
+    {
     }
 }
