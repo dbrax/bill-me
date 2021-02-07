@@ -44,7 +44,7 @@ class BillMe extends Queries
         $order->mobile_number = $mobile_number;
         $order->amount = $amount;
         $order->payment_method = $payment_method;
-        $order->status = "Pending";
+        $order->status = "pending";
         $order->notes = $notes;
         $order->address = $address;
         $order->date = date("Y-m-d");
@@ -64,7 +64,7 @@ class BillMe extends Queries
         }
 
         //perform checks if the user needs email service use a separate function here add bulk sms functionality ...
-        if (config('billme.send_mail')) {
+        if (config('billme.send_mail')==1) {
             Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new OrderReceived($order));
             Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new NewOrder($order));
         }
@@ -178,7 +178,7 @@ class BillMe extends Queries
     public function cancel_order(string $orderid): void
     {
         $order = Order::find($orderid);
-        $order->status = "Cancelled";
+        $order->status = "cancelled";
         $order->save();
     }
 
