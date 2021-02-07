@@ -69,7 +69,6 @@ class BillMe
             Mail::to(["address" => $order->email, "name" => $order->firstname])->send(new NewOrder($order));
         }
 
-
         $this->createInvoice($order);
     }
 
@@ -176,14 +175,24 @@ class BillMe
     {
     }
 
-    public function cancel_order(string $orderid) : void
+    public function cancel_order(string $orderid): void
     {
         $order = Order::find($orderid);
-        $order->status ="CANCELLED";
+        $order->status = "Cancelled";
         $order->save();
     }
 
-    public function delete_order(string $order_id)
+    public function delete_order(string $orderid)
     {
+
+        $order = Order::find($orderid);
+        $order->delete();
+        $this->delete_invoice($orderid);
+    }
+
+    public function delete_invoice(string $orderid): void
+    {
+
+        $invoice = Invoice::where('orderid', $orderid)->delete();
     }
 }
