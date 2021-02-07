@@ -12,6 +12,9 @@
  + **Order Management**
  + **Invoice Management**
  + **Receipt Management**
+ + **Order and Invoice Statistics**
+ + **Mail and Sms Notifications**
+ + **Order and Invoice Queries**
 
 
 ## Installation
