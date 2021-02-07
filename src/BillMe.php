@@ -53,15 +53,17 @@ class BillMe extends Queries
         $order->save();
 
         // order items ... here
-
         if (!empty($orderitems)) {
-            /* $orderItem=new OrderItem();
-          $orderItem->order_id=$order->id;
-          $orderItem->amount=$orderitems->amount;
-          $orderItem->quantity=$orderitems->quantity;
 
-
-          */
+            for ($i = 0; $i < count($orderitems); $i++) {
+                $orderItem = new OrderItem();
+                $orderItem->order_id = $order->id;
+                $orderItem->amount = $orderitems[$i]->amount;
+                $orderItem->quantity = $orderitems[$i]->quantity;
+                $orderItem->item = $orderitems[$i]->item;
+                $orderItem->extra_details = serialize($orderitems[$i]->extra_details);
+                $orderItem->save();
+            }
         }
 
         //perform checks if the user needs email service use a separate function here add bulk sms functionality ...

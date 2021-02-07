@@ -28,6 +28,8 @@ class CreateOrderItemsTable extends Migration
             $table->integer('amount');
             $table->integer('quantity')->default(1);
             $table->string("item");
+            $table->string("extra_details")->nullable();
+
             $table->date("date");
 
 
