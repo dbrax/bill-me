@@ -65,12 +65,19 @@ class BillMe extends Queries
         }
 
         //perform checks if the user needs email service use a separate function here add bulk sms functionality ...
-        if (config('bill-me.send_mail')==1) {
-            Mail::to(["email" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
-            Mail::to(["email" => $order->email, "name" => $order->email])->send(new NewOrder($order));
-        }
+
 
         $this->createInvoice($order);
+
+        if (config('bill-me.send_mail') == 1)
+            $this->sendMailNotifications($order);
+    }
+
+
+    public function sendMailNotifications(Order $order)
+    {
+        Mail::to(["email" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
+        Mail::to(["email" => $order->email, "name" => $order->email])->send(new NewOrder($order));
     }
 
 
@@ -118,6 +125,7 @@ class BillMe extends Queries
 
     public function getInvoiceByInvoiceId($invoiceid)
     {
+
         return Invoice::find($invoiceid);
     }
 
