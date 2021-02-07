@@ -15,4 +15,5 @@ use Illuminate\Database\Eloquent\Model;
 class Payments extends Model
 {
     protected $guarded = [];
+    protected $table="billing_payments";
 }

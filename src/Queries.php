@@ -44,4 +44,21 @@ class Queries extends Stats
     public function completed_orders(){
         
     }
+
+    public function getOrderById($orderid){
+        
+    }
+
+    public function getOrdersOnDate($date){
+        
+    }
+
+    public function getOrdersOnDateRange($startdate,$enddate){
+        
+    }
+
+
+    public function getInvoiceById($invoiceid){
+        
+    }
 }
