@@ -17,7 +17,7 @@ use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
 use Epmnzava\BillMe\Mail\Client\OrderReceived;
 use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 use Carbon\Carbon;
-
+use Epmnzava\BillMe\Models\BillingPayment;
 use Mail;
 
 class BillMe extends Queries
@@ -25,8 +25,12 @@ class BillMe extends Queries
 
 
 
-    /** A function that triggers order creation */
+    /** 
+     * A function that triggers order creation
+     * 
+     */
     public function createOrder(
+        int $userid = null,
         string $firstname,
         string $lastname,
         string $email,
@@ -36,9 +40,10 @@ class BillMe extends Queries
         string $notes,
         string $address,
         array $orderitems
-    ) {
+    ): Order {
 
         $order = new Order;
+        $order->userid = $userid;
         $order->firstname = $firstname;
         $order->lastname = $lastname;
         $order->email = $email;
@@ -52,7 +57,7 @@ class BillMe extends Queries
 
         $order->save();
 
-        // order items ... here
+        // Loop through order items here
         if (!empty($orderitems)) {
 
             for ($i = 0; $i < count($orderitems); $i++) {
@@ -66,30 +71,58 @@ class BillMe extends Queries
             }
         }
 
-        //perform checks if the user needs email service use a separate function here add bulk sms functionality ...
 
-
-        $this->createInvoice($order);
+        $invoice = $this->createInvoice($order);
 
         if (config('bill-me.send_mail') == 1)
-            $this->sendMailNotifications($order);
+            $this->sendMailNotifications($order, $invoice);
+
+        $billing_record = $this->add_billing_record($order, $invoice);
+
+        return $order;
     }
 
 
-    public function sendMailNotifications(Order $order)
+
+    public function add_billing_record(Order $order, Invoice $invoice)
+    {
+
+        $bill_payment = new BillingPayment;
+        $bill_payment->userid = $order->userid;
+        $bill_payment->invoiceid = $invoice->id;
+        $bill_payment->orderid = $order->id;
+        $bill_payment->amount = $invoice->amount;
+        $bill_payment->date = $order->date;
+        $bill_payment->save();
+
+
+        return $bill_payment;
+    }
+
+
+    /**
+     * Function that triggers sending of email notification for orders
+     */
+
+    public function sendMailNotifications(Order $order, Invoice $invoice)
     {
         Mail::to(["email" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
         Mail::to(["email" => $order->email, "name" => $order->email])->send(new NewOrder($order));
+        Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
     }
 
 
 
+    /**
+     * Function that creates an invoie from an order
+     */
 
-    public function createInvoice(Order $order)
+    public function createInvoice(Order $order): Invoice
     {
 
         $invoice = new Invoice;
         $invoice->orderid = $order->id;
+        $invoice->userid = $order->userid;
         $invoice->firstname = $order->firstname;
         $invoice->lastname = $order->lastname;
         $invoice->mobile_number = $order->mobile_number;
@@ -100,15 +133,11 @@ class BillMe extends Queries
         $invoice->date = date('Y-m-d');
         $invoice->save();
 
-        if (config('bill-me.send_mail'))
-            Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
-
-
-
-
         $order_update = Order::find($order->id);
         $order_update->invoiceid = $invoice->id;
         $order_update->save();
+
+        return $invoice;
     }
 
 
@@ -181,11 +210,17 @@ class BillMe extends Queries
     }
 
 
-
+    /**
+     * Function that updates an  order  returns void
+     */
     public function update_order(string $order_id, Order $order): void
     {
     }
 
+
+    /**
+     * Function that updates and  status to cancelled  returns void
+     */
     public function cancel_order(string $orderid): void
     {
         $order = Order::find($orderid);
@@ -193,6 +228,10 @@ class BillMe extends Queries
         $order->save();
     }
 
+
+    /**
+     * Function that deletes an order returns void
+     */
     public function delete_order(string $orderid)
     {
 
@@ -201,6 +240,9 @@ class BillMe extends Queries
         $this->delete_invoice($orderid);
     }
 
+    /**
+     * Function that deletes an invoice returns void
+     */
     public function delete_invoice(string $orderid): void
     {
 

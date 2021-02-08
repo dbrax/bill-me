@@ -12,7 +12,7 @@ namespace Epmnzava\BillMe\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payments extends Model
+class BillingPayment extends Model
 {
     protected $guarded = [];
     protected $table="billing_payments";

@@ -24,6 +24,10 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+              //if the user has loggin you can save the user id
+            $table->integer->('userid')->nullable();
+            
             $table->string('orderid'); //required attribute
             $table->integer('amount'); //required attribute
             $table->string('firstname'); //required attribute
@@ -32,7 +36,9 @@ class CreateInvoicesTable extends Migration
             $table->string('email'); // required attribute
             $table->string('status')->default('pending');
             $table->string('address')->nullable();
-            $table->date("date");
+            $table->string('invoice_type')->nullable();
+            $table->string('notes')->nullable(); // if any notes
+            $table->date("date"); //initiated date
 
 
 

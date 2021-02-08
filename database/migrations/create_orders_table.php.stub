@@ -27,6 +27,8 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
            //customer personal information 
             $table->string('firstname')->nullable();
+            //if the user has loggin you can save the user id
+            $table->integer->('userid')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile_number')->nullable();

@@ -12,7 +12,8 @@ return [
     'org_name'=>env('ORG_NAME','BILL ME INC'), // If you don't have we will use default
 
     /** 
-      * Fill in a flag of 1 if you want to send mail notifications 
+      * Fill in a flag of 1 if you want billme to send mail notification
+      *Fill in 0 if you want to send your own custom mail notification
       */
      'send_mail'=>env('BILL_ME_SEND_MAIL','1'),
 
