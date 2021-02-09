@@ -6,7 +6,7 @@ All notable changes to `bill-me` will be documented in this file
 
 ## 1.0.1 - 2021-02-09
 
-# Pre-release
+# release v1.0.1
 + Order Management
 + Invoice Management
 + Receipt Management
