@@ -26,7 +26,7 @@ class CreateBillingPaymentTable extends Migration
             $table->bigIncrements('id');
 
                 //if the user has loggin you can save the user id
-            $table->integer->('userid')->nullable();
+            $table->integer('userid')->nullable();
             
             $table->string('invoiceid'); //required attribute
             $table->string('orderid'); //required attribute
