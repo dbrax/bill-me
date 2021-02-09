@@ -30,7 +30,6 @@ class BillMe extends Queries
      * 
      */
     public function createOrder(
-        int $userid = null,
         string $firstname,
         string $lastname,
         string $email,
@@ -39,7 +38,8 @@ class BillMe extends Queries
         string $payment_method,
         string $notes,
         string $address,
-        array $orderitems
+        array $orderitems,
+         $userid = null
     ): Order {
 
         $order = new Order;
