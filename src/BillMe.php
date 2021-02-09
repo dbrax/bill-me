@@ -39,7 +39,7 @@ class BillMe extends Queries
         string $notes,
         string $address,
         array $orderitems,
-         $userid = null
+        $userid = null
     ): Order {
 
         $order = new Order;

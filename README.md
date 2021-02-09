@@ -1,4 +1,4 @@
-# Add Billing Functionalities To Your Web Application.(Its on Alpha Test & Pre Release)
+# Add Billing Functionalities To Your Web Application.( Made for web artisans )
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/epmnzava/bill-me.svg?style=flat-square)](https://packagist.org/packages/epmnzava/bill-me)
 [![Quality Score](https://img.shields.io/scrutinizer/g/dbrax/bill-me.svg?style=flat-square)](https://scrutinizer-ci.com/g/dbrax/bill-me)
