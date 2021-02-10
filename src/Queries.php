@@ -42,6 +42,12 @@ class Queries extends Stats
         return Order::where('date', date('Y-m-d'))->get();
     }
 
+
+    public function get_orders_with_status($status)
+    {
+        return Order::where('status', $status)->get();
+    }
+
     public function pending_orders()
     {
         return Order::where('status', "pending")->get();

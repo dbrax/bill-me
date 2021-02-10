@@ -141,6 +141,40 @@ class BillMe extends Queries
     }
 
 
+    public function order_paid($orderid){
+
+        $invoiceid=Invoice::where('orderid',$orderid)->first()->id;
+       
+        $this->invoice_paid($invoiceid);
+
+
+    }
+    public function invoice_paid($invoiceid) : void
+    {
+
+        $invoice = Invoice::find($invoiceid);
+        $invoice->status = "paid";
+        $invoice->save();
+        
+        $order=Order::find($invoice->orderid);
+        $order->status="completed";
+        $order->save();
+
+        $this->paid_billing_record($invoiceid);
+
+
+
+
+    }
+
+
+    public function paid_billing_record($invoiceid){
+        
+      $billing_record=BillingPayment::find(BillingPayment::where('invoiceid',$invoiceid)->first()->id);
+      $billing_record->status="completed"; 
+      $billing_record->save();
+
+    }
     /**
      * Function that gets you invoice details by using orderid
      */
