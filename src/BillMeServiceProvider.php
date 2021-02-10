@@ -44,10 +44,12 @@ class BillMeServiceProvider extends ServiceProvider
                     __DIR__ . '/../database/migrations/create_invoices_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_invoices_table.php'),
                     __DIR__ . '/../database/migrations/create_payment_method_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_payment_method_table.php'),
                     __DIR__ . '/../database/migrations/create_billing_payment_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_billing_payment_table.php'),
+                    __DIR__ . '/../database/migrations/create_receipts_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_receipts_table.php'),
 
                 ], 'migrations');
             }
 
+            
 
 
 

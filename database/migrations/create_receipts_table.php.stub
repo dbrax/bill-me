@@ -23,8 +23,8 @@ class CreateReceiptsTable extends Migration
     {
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
-            $table->integer('payment_id');
-            $table->integer('invoice_id');
+            $table->integer('paymentid');
+            $table->integer('invoiceid');
             $table->integer('status')->nullable();
             $table->timestamps();
         });

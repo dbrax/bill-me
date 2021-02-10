@@ -11,6 +11,7 @@
 namespace Epmnzava\BillMe;
 
 use Epmnzava\BillMe\Models\Order;
+use Epmnzava\BillMe\Models\Receipt;
 use Epmnzava\BillMe\Models\Invoice;
 use Epmnzava\BillMe\Models\OrderItem;
 use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
@@ -141,39 +142,59 @@ class BillMe extends Queries
     }
 
 
-    public function order_paid($orderid){
+    public function order_paid($orderid)
+    {
 
-        $invoiceid=Invoice::where('orderid',$orderid)->first()->id;
-       
+        $invoiceid = Invoice::where('orderid', $orderid)->first()->id;
+
         $this->invoice_paid($invoiceid);
-
-
     }
-    public function invoice_paid($invoiceid) : void
+
+
+    /**
+     * Function gets @param invoiceid and updates order , invoice and billing record that the user has paid
+     */
+    public function invoice_paid($invoiceid): void
     {
 
         $invoice = Invoice::find($invoiceid);
         $invoice->status = "paid";
         $invoice->save();
-        
-        $order=Order::find($invoice->orderid);
-        $order->status="completed";
+
+        $order = Order::find($invoice->orderid);
+        $order->status = "completed";
         $order->save();
 
-        $this->paid_billing_record($invoiceid);
+        $billingid = $this->paid_billing_record($invoiceid);
 
+        $receiptid=$this->create_receipt($invoiceid, $billingid);
 
+        // create email notification invoice paid order paid..
+    }
 
+       /**
+     * Function gets @param invoiceid and @param billingid and creates receipt
+     */
+    public function create_receipt($invoiceid, $billingid) : int
+    {
 
+        $receipt = new Receipt;
+        $receipt->invoiceid = $invoiceid;
+        $receipt->paymentid = $billingid;
+        $receipt->save();
+
+        return $receipt->id;
     }
 
 
-    public function paid_billing_record($invoiceid){
-        
-      $billing_record=BillingPayment::find(BillingPayment::where('invoiceid',$invoiceid)->first()->id);
-      $billing_record->status="completed"; 
-      $billing_record->save();
+    public function paid_billing_record($invoiceid)
+    {
 
+        $billing_record = BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
+        $billing_record->status = "completed";
+        $billing_record->save();
+
+        return  $billing_record->id;
     }
     /**
      * Function that gets you invoice details by using orderid
