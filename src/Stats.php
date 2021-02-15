@@ -48,6 +48,14 @@ class Stats
         return Order::where('status', 'pending')->count();
     }
 
+/**
+     * Gets total sum of pending orders 
+     */
+    public function sum_of_pending_amount(){
+
+     return Invoice::where('status', 'pending')->sum('amount');   
+    }
+
     public function total_completed_orders()
     {
         return Order::where('status', 'completed')->count();
@@ -116,4 +124,23 @@ class Stats
     {
         return Invoice::where('date', date('Y-m-d'))->count();
     }
+
+
+      /**
+     * Gets total count of pending orders 
+     */
+    public function total_pending_invoices()
+    {
+        return Invoice::where('status', 'pending')->count();
+    }
+
+/**
+     * Gets total sum of pending orders 
+     */
+    public function sum_of_pending_invoice_amount(){
+
+     return Invoice::where('status', 'pending')->sum('amount');   
+    }
+
+
 }
