@@ -143,4 +143,46 @@ class Stats
     }
 
 
+
+
+      /**
+     * Gets total count of pending invoices by status 
+     */
+    public function total_invoice_count_by_status($status)
+    {
+        return Invoice::where('status', $status)->count();
+    }
+
+
+
+
+
+/**
+     * Gets total sum of pending invoices by status 
+     */
+    public function sum_of_given_invoice_status_amount($status){
+
+     return Invoice::where('status', $status)->sum('amount');   
+    }
+
+
+
+      /**
+     * Gets total count of completed invoices 
+     */
+    public function total_completed_invoices()
+    {
+        return Invoice::where('status', 'completed')->count();
+    }
+
+/**
+     * Gets total sum of completed invoices 
+     */
+    public function sum_of_completed_invoice_amount(){
+
+     return Invoice::where('status', 'completed')->sum('amount');   
+    }
+
+
+
 }
