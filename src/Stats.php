@@ -156,7 +156,6 @@ class Stats
 
 
 
-
 /**
      * Gets total sum of pending invoices by status 
      */
