@@ -48,12 +48,13 @@ class Stats
         return Order::where('status', 'pending')->count();
     }
 
-/**
+    /**
      * Gets total sum of pending orders 
      */
-    public function sum_of_pending_amount(){
+    public function sum_of_pending_amount()
+    {
 
-     return Invoice::where('status', 'pending')->sum('amount');   
+        return Invoice::where('status', 'pending')->sum('amount');
     }
 
     public function total_completed_orders()
@@ -126,7 +127,7 @@ class Stats
     }
 
 
-      /**
+    /**
      * Gets total count of pending orders 
      */
     public function total_pending_invoices()
@@ -134,18 +135,19 @@ class Stats
         return Invoice::where('status', 'pending')->count();
     }
 
-/**
+    /**
      * Gets total sum of pending orders 
      */
-    public function sum_of_pending_invoice_amount(){
+    public function sum_of_pending_invoice_amount()
+    {
 
-     return Invoice::where('status', 'pending')->sum('amount');   
+        return Invoice::where('status', 'pending')->sum('amount');
     }
 
 
 
 
-      /**
+    /**
      * Gets total count of pending invoices by status 
      */
     public function total_invoice_count_by_status($status)
@@ -156,17 +158,18 @@ class Stats
 
 
 
-/**
+    /**
      * Gets total sum of pending invoices by status 
      */
-    public function sum_of_given_invoice_status_amount($status){
+    public function sum_of_given_invoice_status_amount($status)
+    {
 
-     return Invoice::where('status', $status)->sum('amount');   
+        return Invoice::where('status', $status)->sum('amount');
     }
 
 
 
-      /**
+    /**
      * Gets total count of completed invoices 
      */
     public function total_completed_invoices()
@@ -174,14 +177,12 @@ class Stats
         return Invoice::where('status', 'completed')->count();
     }
 
-/**
+    /**
      * Gets total sum of completed invoices 
      */
-    public function sum_of_completed_invoice_amount(){
+    public function sum_of_completed_invoice_amount()
+    {
 
-     return Invoice::where('status', 'completed')->sum('amount');   
+        return Invoice::where('status', 'completed')->sum('amount');
     }
-
-
-
 }
