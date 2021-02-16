@@ -113,6 +113,14 @@ class Queries extends Stats
     }
 
 
+ /** Function that returns total number of user invoices */
+    public function totalUserInvoices($userid) : int
+    {
+        return Invoice::where('userid', $userid)->count();
+    }
+
+
+
 
     /** Function to get given user invoices by status */
     public function getUserInvoiceByStatus($userid, $status)
@@ -138,6 +146,7 @@ class Queries extends Stats
         return Invoice::where('userid', $userid)->where('status', $status)->count();
     }
 
+    /** Function that gets full  billing history */
 
     public function getAllBillingHistory()
     {
@@ -146,11 +155,31 @@ class Queries extends Stats
     }
 
 
+    /** Function that gets full user billing history*/
+
     public function getUserBillingHistory($userid)
     {
 
         return BillingPayment::where('userid', $userid)->get();
     }
+
+
+    public function getUserBillingHistoryByStartDate($userid,$start_date)
+    {
+
+        return BillingPayment::where('userid', $userid)->where('date',$start_date)->get();
+    }
+
+
+    /** Function to get payment history of a given user for a given period */
+
+        public function getUserBillingHistoryBetweenDates($userid,$start_date,$enddate)
+    {
+
+        return BillingPayment::where('userid', $userid)->whereBetween('date',[$start_date,$enddate])->get();
+    }
+
+
 
 
 

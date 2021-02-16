@@ -39,6 +39,8 @@ class CreateInvoicesTable extends Migration
             $table->string('invoice_type')->nullable();
             $table->string('notes')->nullable(); // if any notes
             $table->date("date"); //initiated date
+            $table->date("due_date")->nullable(); //not required in some usecase
+
 
 
 
