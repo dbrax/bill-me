@@ -113,8 +113,8 @@ class Queries extends Stats
     }
 
 
- /** Function that returns total number of user invoices */
-    public function totalUserInvoices($userid) : int
+    /** Function that returns total number of user invoices */
+    public function totalUserInvoices($userid): int
     {
         return Invoice::where('userid', $userid)->count();
     }
@@ -166,33 +166,60 @@ class Queries extends Stats
 
 
 
-    public function getUserBillingHistoryByStartDate($userid,$start_date)
+    public function getUserBillingHistoryByStartDate($userid, $start_date)
     {
 
-        return BillingPayment::where('userid', $userid)->where('date',$start_date)->get();
+        return BillingPayment::where('userid', $userid)->where('date', $start_date)->get();
     }
 
 
     /** Function to get payment history of a given user for a given period */
 
-        public function getUserBillingHistoryBetweenDates($userid,$start_date,$enddate)
+    public function getUserBillingHistoryBetweenDates($userid, $start_date, $enddate)
     {
 
-        return BillingPayment::where('userid', $userid)->whereBetween('date',[$start_date,$enddate])->get();
+        return BillingPayment::where('userid', $userid)->whereBetween('date', [$start_date, $enddate])->get();
     }
 
 
     /**
      * Returns the model instance to be updated
      */
-    public function updateBillingHistory($invoiceid) : BillingPayment
+    public function updateBillingHistory($invoiceid): BillingPayment
     {
-        return BillingPayment::find(BillingPayment::where('invoiceid',$invoiceid)->first()->id);
+        return BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
     }
+
+
+    /**
+     * Returns the model instance to be updated
+     */
+    public function updateInvoiceByInstance($invoiceid): Invoice
+    {
+        return Invoice::find($invoiceid);
+    }
+
 
     public function getUserBillingHistoryByStatus($userid, $status)
     {
 
         return BillingPayment::where('userid', $userid)->where('status', $status)->get();
+    }
+
+/** Return OrderItems for particular order
+*@param $orderid
+ **/
+    public function getOrderItems($orderid){
+
+        return OrderItem::where('order_id',$orderid)->get();
+    }
+
+
+    /** Return OrderItems for particular order gets invoiceid
+*@param $invoiceid
+ **/
+    public function getOrderItemsByInvoiceId($invoiceid){
+
+        return OrderItem::where('order_id',Invoice::where('id',$invoiceid)->first()->orderid)->get();
     }
 }
