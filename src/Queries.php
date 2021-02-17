@@ -182,8 +182,13 @@ class Queries extends Stats
     }
 
 
-
-
+    /**
+     * Returns the model instance to be updated
+     */
+    public function updateBillingHistory($invoiceid) : BillingPayment
+    {
+        return BillingPayment::find(BillingPayment::where('invoiceid',$invoiceid)->first()->id);
+    }
 
     public function getUserBillingHistoryByStatus($userid, $status)
     {
