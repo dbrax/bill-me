@@ -174,7 +174,7 @@ class Stats
      */
     public function total_completed_invoices()
     {
-        return Invoice::where('status', 'completed')->count();
+        return Invoice::where('status', 'paid')->count();
     }
 
     /**
@@ -183,6 +183,6 @@ class Stats
     public function sum_of_completed_invoice_amount()
     {
 
-        return Invoice::where('status', 'completed')->sum('amount');
+        return Invoice::where('status', 'paid')->sum('amount');
     }
 }

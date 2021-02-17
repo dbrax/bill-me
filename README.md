@@ -28,6 +28,8 @@ composer require epmnzava/bill-me
 
 ``` php
 // how to use the package coming soon
+
+BillMe::createOrder("emmanuel","Mnzava","epmnzava@gmail.com","","200","paypal","","Brooklyn Park",[["amount"=>"200","quantity"=>1,"Item"=>"Replacement Fee","description"=>"purchased moto moto"]],2);
 ```
 
 ### Testing

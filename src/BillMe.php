@@ -64,10 +64,10 @@ class BillMe extends Queries
             for ($i = 0; $i < count($orderitems); $i++) {
                 $orderItem = new OrderItem();
                 $orderItem->order_id = $order->id;
-                $orderItem->amount = $orderitems[$i]->amount;
-                $orderItem->quantity = $orderitems[$i]->quantity;
-                $orderItem->item = $orderitems[$i]->item;
-                $orderItem->extra_details = serialize($orderitems[$i]->extra_details);
+                $orderItem->amount = $orderitems[$i]['amount'];
+                $orderItem->quantity = $orderitems[$i]['quantity'];
+                $orderItem->item = $orderitems[$i]['item'];
+                $orderItem->extra_details = serialize($orderitems[$i]['extra_details']);
                 $orderItem->save();
             }
         }
