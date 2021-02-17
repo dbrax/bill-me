@@ -68,6 +68,8 @@ class BillMe extends Queries
                 $orderItem->quantity = $orderitems[$i]['quantity'];
                 $orderItem->item = $orderitems[$i]['item'];
                 $orderItem->extra_details = serialize($orderitems[$i]['extra_details']);
+                $orderItem->date = date("Y-m-d");
+
                 $orderItem->save();
             }
         }
