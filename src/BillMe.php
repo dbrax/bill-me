@@ -18,6 +18,7 @@ use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
 use Epmnzava\BillMe\Mail\Client\OrderReceived;
 use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 use Carbon\Carbon;
+use Epmnzava\BillMe\Mail\Client\Invoices\InvoicePaid;
 use Epmnzava\BillMe\Models\BillingPayment;
 use Mail;
 
@@ -134,6 +135,7 @@ class BillMe extends Queries
         $invoice->status = $order->status;
         $invoice->address = $order->address;
         $invoice->date = date('Y-m-d');
+        $invoice->due_date = Carbon::now()->addDays(config('bill-me.due_date_duration'));
         $invoice->save();
 
         $order_update = Order::find($order->id);
@@ -169,15 +171,19 @@ class BillMe extends Queries
 
         $billingid = $this->paid_billing_record($invoiceid);
 
-        $receiptid=$this->create_receipt($invoiceid, $billingid);
+        $receiptid = $this->create_receipt($invoiceid, $billingid);
 
         // create email notification invoice paid order paid..
+
+        if (config('bill-me.send_mail') == 1)
+        Mail::to(["email" => $order->email, "name" => $order->email])->send(new InvoicePaid($invoice));
+
     }
 
-       /**
+    /**
      * Function gets @param invoiceid and @param billingid and creates receipt
      */
-    public function create_receipt($invoiceid, $billingid) : int
+    public function create_receipt($invoiceid, $billingid): int
     {
 
         $receipt = new Receipt;
@@ -216,6 +222,8 @@ class BillMe extends Queries
 
         return Invoice::find($invoiceid);
     }
+
+  
 
 
 

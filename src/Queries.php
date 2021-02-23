@@ -10,7 +10,7 @@
 
 namespace Epmnzava\BillMe;
 
-
+use Carbon\Carbon;
 use Epmnzava\BillMe\Models\BillingPayment;
 use Epmnzava\BillMe\Models\Order;
 use Epmnzava\BillMe\Models\Invoice;
@@ -84,6 +84,14 @@ class Queries extends Stats
     {
         return Invoice::find($invoiceid);
     }
+
+
+    /** Function to get an invoice */
+    public function getInvoiceByOrderId($orderid)
+    {
+        return Invoice::find(Order::where('id', $orderid)->first()->invoiceid);
+    }
+
 
 
     /**
@@ -199,6 +207,20 @@ class Queries extends Stats
         return Invoice::find($invoiceid);
     }
 
+    /**
+     * 
+     * Returns updated invoice with new due_date
+     */
+    public function updateDueDate($date, $invoiceid): Invoice
+    {
+        $invoice = $this->updateInvoiceByInstance($invoiceid);
+        $invoice->due_date = $date;
+        $invoice->save();
+        return $invoice;
+    }
+
+
+
 
     public function getUserBillingHistoryByStatus($userid, $status)
     {
@@ -206,20 +228,22 @@ class Queries extends Stats
         return BillingPayment::where('userid', $userid)->where('status', $status)->get();
     }
 
-/** Return OrderItems for particular order
-*@param $orderid
- **/
-    public function getOrderItems($orderid){
+    /** Return OrderItems for particular order
+     *@param $orderid
+     **/
+    public function getOrderItems($orderid)
+    {
 
-        return OrderItem::where('order_id',$orderid)->get();
+        return OrderItem::where('order_id', $orderid)->get();
     }
 
 
     /** Return OrderItems for particular order gets invoiceid
-*@param $invoiceid
- **/
-    public function getOrderItemsByInvoiceId($invoiceid){
+     *@param $invoiceid
+     **/
+    public function getOrderItemsByInvoiceId($invoiceid)
+    {
 
-        return OrderItem::where('order_id',Invoice::where('id',$invoiceid)->first()->orderid)->get();
+        return OrderItem::where('order_id', Invoice::where('id', $invoiceid)->first()->orderid)->get();
     }
 }
