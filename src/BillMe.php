@@ -135,7 +135,7 @@ class BillMe extends Queries
         $invoice->status = $order->status;
         $invoice->address = $order->address;
         $invoice->date = date('Y-m-d');
-        $invoice->due_date = Carbon::now()->addDays(config('bill-me.due_date_duration'));
+        $invoice->due_date = Carbon::now()->addDays(config('bill-me.due_date_duration'))->format('Y-m-d');
         $invoice->save();
 
         $order_update = Order::find($order->id);
