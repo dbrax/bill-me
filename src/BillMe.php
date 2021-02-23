@@ -158,7 +158,7 @@ class BillMe extends Queries
     /**
      * Function gets @param invoiceid and updates order , invoice and billing record that the user has paid
      */
-    public function invoice_paid($invoiceid): void
+    public function invoice_paid($invoiceid): Invoice
     {
 
         $invoice = Invoice::find($invoiceid);
@@ -178,6 +178,8 @@ class BillMe extends Queries
         if (config('bill-me.send_mail') == 1)
         Mail::to(["email" => $order->email, "name" => $order->email])->send(new InvoicePaid($invoice));
 
+
+return  $invoice;
     }
 
     /**
