@@ -171,7 +171,7 @@ class BillMe extends Queries
 
         $billingid = $this->paid_billing_record($invoiceid);
 
-        $receiptid = $this->create_receipt($invoiceid, $billingid);
+        //$receiptid = $this->create_receipt($invoiceid, $billingid);
 
         // create email notification invoice paid order paid..
 
