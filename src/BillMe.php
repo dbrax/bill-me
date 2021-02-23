@@ -201,7 +201,7 @@ return  $invoice;
     {
 
         $billing_record = BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
-        $billing_record->status = "completed";
+        $billing_record->status = "paid";
         $billing_record->save();
 
         return  $billing_record->id;
