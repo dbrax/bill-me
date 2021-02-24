@@ -30,6 +30,12 @@ class BillMeServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'billme');
 
+
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/billme'),
+        ]);
+
+        
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('bill-me.php'),
