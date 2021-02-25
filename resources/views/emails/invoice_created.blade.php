@@ -4,9 +4,9 @@
 @endphp 
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
 Please find your invoice for Your Order
-| SN       | Item         | Amount  |
-| ------------- |:-------------:| --------:|
-| {{$i}}     | {{$invoice->invoice_title}}    | {{$invoice->amount}}   |
+| SN            | Item                           | Amount                                               |
+| ------------- |:------------------------------:| ----------------------------------------------------:|                       
+| {{$i}}        | {{$invoice->invoice_title}}    | {{config('bill-me.currency')}}{{$invoice->amount}}   |
 
 
 Thanks,<br>

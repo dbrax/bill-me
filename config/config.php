@@ -30,7 +30,9 @@ return [
       * 5 days is default
       */
 
-  'due_date_duration' => env('BILL_ME_INVOICE_DUE_DATE', '5')
+  'due_date_duration' => env('BILL_ME_INVOICE_DUE_DATE', '5'),
+
+  'currency'=>env('BILL_ME_CURRENCY','USD')
 
 
 

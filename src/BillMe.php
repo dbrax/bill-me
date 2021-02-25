@@ -169,7 +169,7 @@ class BillMe extends Queries
         $order->status = "completed";
         $order->save();
 
-        $billingid = $this->paid_billing_record($invoiceid);
+        $billing = $this->paid_billing_record($invoiceid);
 
         //$receiptid = $this->create_receipt($invoiceid, $billingid);
 
@@ -195,6 +195,7 @@ class BillMe extends Queries
 
         return $receipt->id;
     }
+
 
 
     public function paid_billing_record($invoiceid): BillingPayment
@@ -258,8 +259,11 @@ class BillMe extends Queries
         $invoice->save();
     }
 
+    /**
+     * Function to update invoice
+     */
 
-    public function update_invoice(string $invoiceid, Invoice $invoice): void
+    public function update_invoice(string $invoiceid, Invoice $invoice): Invoice
     {
     }
 
