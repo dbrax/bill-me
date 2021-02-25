@@ -1,7 +1,12 @@
 @component('mail::message')
- 
+@php
+    $i=1;
+@endphp 
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
-Please find your invoice for an order with id  {{$invoice->orderid}} item {{$invoice->invoice_title}} 
+Please find your invoice for Your Order
+| SN       | Item         | Amount  |
+| ------------- |:-------------:| --------:|
+| {{$i}}     | {{$invoice->invoice_title}}    | {{$invoice->amount}}   |
 
 
 Thanks,<br>

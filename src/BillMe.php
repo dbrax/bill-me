@@ -110,9 +110,9 @@ class BillMe extends Queries
 
     public function sendMailNotifications(Order $order, Invoice $invoice)
     {
-        Mail::to(["email" => $order->email, "name" => $order->email])->send(new OrderReceived($order));
-        Mail::to(["email" => $order->email, "name" => $order->email])->send(new NewOrder($order));
-        Mail::to(["address" => $invoice->email, "name" => $invoice->email])->send(new InvoiceCreated($invoice));
+        Mail::to(["email" => $order->email])->send(new OrderReceived($order));
+        Mail::to(["email" => $order->email])->send(new NewOrder($order));
+        Mail::to(["address" => $invoice->email])->send(new InvoiceCreated($invoice));
     }
 
 
@@ -176,7 +176,7 @@ class BillMe extends Queries
         // create email notification invoice paid order paid..
 
         if (config('bill-me.send_mail') == 1)
-        Mail::to(["email" => $order->email, "name" => $order->email])->send(new InvoicePaid($invoice));
+        Mail::to(["email" => $order->email])->send(new InvoicePaid($invoice));
 
 
 return  $invoice;

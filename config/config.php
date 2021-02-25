@@ -21,7 +21,7 @@ return [
   /** 
       * Specify an email address that you are going to receive email order and invoice notifications
       */
-  'your_mail_address' => env('BILL_ME_ORG_MAIL', ''),
+  'your_mail_address' => env('BILL_ME_ORG_MAIL', 'info@billme.io'),
 
 
 
