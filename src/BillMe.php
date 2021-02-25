@@ -111,7 +111,7 @@ class BillMe extends Queries
     public function sendMailNotifications(Order $order, Invoice $invoice)
     {
         Mail::to(["email" => $order->email])->send(new OrderReceived($order));
-        Mail::to(["email" => $order->email])->send(new NewOrder($order));
+        Mail::to(["email" => config('bill-me.your_mail_address')])->send(new NewOrder($order));
         Mail::to(["address" => $invoice->email])->send(new InvoiceCreated($invoice));
     }
 
