@@ -88,7 +88,7 @@ class BillMe extends Queries
 
 
 
-    public function add_billing_record(Order $order, Invoice $invoice)
+    public function add_billing_record(Order $order, Invoice $invoice): BillingPayment
     {
 
         $bill_payment = new BillingPayment;
@@ -108,7 +108,7 @@ class BillMe extends Queries
      * Function that triggers sending of email notification for orders
      */
 
-    public function sendMailNotifications(Order $order, Invoice $invoice)
+    public function sendMailNotifications(Order $order, Invoice $invoice): void
     {
         Mail::to(["email" => $order->email])->send(new OrderReceived($order));
         Mail::to(["email" => config('bill-me.your_mail_address')])->send(new NewOrder($order));
@@ -146,7 +146,7 @@ class BillMe extends Queries
     }
 
 
-    public function order_paid($orderid)
+    public function order_paid($orderid): void
     {
 
         $invoiceid = Invoice::where('orderid', $orderid)->first()->id;
@@ -176,10 +176,10 @@ class BillMe extends Queries
         // create email notification invoice paid order paid..
 
         if (config('bill-me.send_mail') == 1)
-        Mail::to(["email" => $order->email])->send(new InvoicePaid($invoice));
+            Mail::to(["email" => $order->email])->send(new InvoicePaid($invoice));
 
 
-return  $invoice;
+        return  $invoice;
     }
 
     /**
@@ -197,14 +197,14 @@ return  $invoice;
     }
 
 
-    public function paid_billing_record($invoiceid)
+    public function paid_billing_record($invoiceid): BillingPayment
     {
 
         $billing_record = BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
         $billing_record->status = "paid";
         $billing_record->save();
 
-        return  $billing_record->id;
+        return  $billing_record;
     }
     /**
      * Function that gets you invoice details by using orderid
@@ -225,7 +225,7 @@ return  $invoice;
         return Invoice::find($invoiceid);
     }
 
-  
+
 
 
 
