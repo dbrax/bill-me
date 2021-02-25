@@ -2,8 +2,10 @@
 
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
 Please find your invoice for Your Order \
+\
 {{$invoice->invoice_title}}  \
-{{config('bill-me.currency')}}{{$invoice->amount}} 
+\
+{{config('bill-me.currency')}} <space></space> {{$invoice->amount}} 
 
 
 Thanks,<br>
