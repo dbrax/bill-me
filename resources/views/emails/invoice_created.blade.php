@@ -2,11 +2,21 @@
 
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
 Please find your invoice for Your Order \
-\
-{{$invoice->invoice_title}}  \
-\
-{{config('bill-me.currency')}} <space></space> {{$invoice->amount}} 
 
+# Summary
+
+---------------------------------------
+
+    Invoice: {{$invoice->id}}
+    Company: {{config('bill-me.org_name')}}
+
+    Item: {{$invoice->invoice_title}}
+    
+    OrderId: {{$invoice->orderid}}
+    Amount: {{$invoice->amount}}
+    E-Mail: {{config('bill-me.your_mail_address')}}
+    Notes: {{$invoice->notes}}
+    Date: {{$invoice->date}}
 
 Thanks,<br>
 {{ config('bill-me.name') }}<br>
