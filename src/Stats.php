@@ -62,6 +62,11 @@ class Stats
         return Order::where('status', 'completed')->count();
     }
 
+  public function completed_orders()
+    {
+        return Order::where('status', 'completed')->get();
+    }
+
     /**
      * Gets total count of orders today
      */
