@@ -60,7 +60,7 @@ class Queries extends Stats
 
     public function completed_orders()
     {
-        return Order::where('status', "complete")->get();
+        return Order::where('status', "completed")->get();
     }
 
     public function getOrderById($orderid)
