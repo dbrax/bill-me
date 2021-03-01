@@ -63,10 +63,6 @@ class Stats
         return Order::where('status', 'completed')->count();
     }
 
-  public function completed_orders()
-    {
-        return Order::where('status', 'completed')->get();
-    }
 
     public function paid_payments(){
 
