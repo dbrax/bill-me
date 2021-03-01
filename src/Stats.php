@@ -16,6 +16,7 @@ use Epmnzava\BillMe\Models\OrderItem;
 use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
 use Epmnzava\BillMe\Mail\Client\OrderReceived;
 use Epmnzava\BillMe\Mail\Merchant\NewOrder;
+use Epmnzava\BillMe\Models\BillingPayment;
 use Carbon\Carbon;
 
 use Mail;
@@ -65,6 +66,12 @@ class Stats
   public function completed_orders()
     {
         return Order::where('status', 'completed')->get();
+    }
+
+    public function paid_payments(){
+
+        return BillingPayment::where('status', 'paid')->get();
+
     }
 
     /**
