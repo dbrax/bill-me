@@ -11,7 +11,7 @@
 namespace Epmnzava\BillMe\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Order;
+use Epmnzava\BillMe\Models\Order;
 
 
 class OrderItem extends Model
