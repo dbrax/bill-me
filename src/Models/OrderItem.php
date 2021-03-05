@@ -11,8 +11,20 @@
 namespace Epmnzava\BillMe\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Order;
+
 
 class OrderItem extends Model
 {
     protected $guarded = [];
+    protected $table="order_items";
+
+   /**
+     * Get the order that owns the orderItem.
+     */
+    public function Order()
+    {
+        return $this->belongsTo(Order::class,'order_id');
+    }
+
 }
