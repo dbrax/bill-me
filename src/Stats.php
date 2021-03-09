@@ -51,12 +51,14 @@ class Stats
 
     /**
      * Gets total sum of pending orders 
-     */
+     duplicate
+   
     public function sum_of_pending_amount()
     {
 
         return Invoice::where('status', 'pending')->sum('amount');
     }
+      */
 
     public function total_completed_orders()
     {

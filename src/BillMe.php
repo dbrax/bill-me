@@ -5,7 +5,7 @@
  * Twitter: @epmnzava
  * Github: https://github.com/dbrax/bill-me
  * Email: epmnzava@gmail.com
- * 
+ *
  */
 
 namespace Epmnzava\BillMe;
@@ -27,10 +27,12 @@ class BillMe extends Queries
 
 
 
-    /** 
+    /**
      * A function that triggers order creation
-     * 
+     *
      */
+
+
     public function createOrder(
         string $firstname,
         string $lastname,

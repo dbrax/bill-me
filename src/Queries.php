@@ -5,7 +5,7 @@
  * Twitter: @epmnzava
  * Github: https://github.com/dbrax/bill-me
  * Email: epmnzava@gmail.com
- * 
+ *
  */
 
 namespace Epmnzava\BillMe;
@@ -95,7 +95,7 @@ class Queries extends Stats
 
 
     /**
-     * 
+     *
      * User Queries
      */
 
@@ -139,8 +139,13 @@ class Queries extends Stats
 
 
 
-    /** Function to get given user invoices by status */
-    public function sumUserInvoiceByStatus($userid, $status)
+    /**
+     * @param $userid
+     * @param $status
+     * @return mixed
+     * Function to get given user invoices by status
+     */
+    public function sumUserInvoiceByStatus($userid, $status) : int
     {
         return Invoice::where('userid', $userid)->where('status', $status)->sum('amount');
     }
@@ -148,7 +153,13 @@ class Queries extends Stats
 
 
 
-    /** Function to get given user invoices by status */
+
+    /**
+     * @param $userid
+     * @param $status
+     * @return mixed
+     *  Function to get given user invoices by status
+     */
     public function totalUserInvoiceByStatus($userid, $status)
     {
         return Invoice::where('userid', $userid)->where('status', $status)->count();
@@ -208,7 +219,7 @@ class Queries extends Stats
     }
 
     /**
-     * 
+     *
      * Returns updated invoice with new due_date
      */
     public function updateDueDate($date, $invoiceid): Invoice
@@ -220,6 +231,12 @@ class Queries extends Stats
     }
 
 
+
+ public function getBillingHistoryByStatus($status)
+    {
+
+        return BillingPayment::where('status', $status)->get();
+    }
 
 
     public function getUserBillingHistoryByStatus($userid, $status)
