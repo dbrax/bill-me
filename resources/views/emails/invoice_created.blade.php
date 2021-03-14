@@ -3,7 +3,7 @@
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
 Please find your invoice for Your Order 
 
-## Summary
+# Summary
 
 ---------------------------------------
 
@@ -21,4 +21,4 @@ Please find your invoice for Your Order
 Thanks,<br>
 {{ config('bill-me.org_name') }}<br>
 {{config('bill-me.signature_name')}}
-s@endcomponent
+@endcomponent
