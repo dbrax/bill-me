@@ -1,9 +1,9 @@
 @component('mail::message')
 
 Hello {{$invoice->firstname}} , {{$invoice->lastname}}
-Please find your invoice for Your Order \
+Please find your invoice for Your Order 
 
-# Summary
+## Summary
 
 ---------------------------------------
 
@@ -19,5 +19,6 @@ Please find your invoice for Your Order \
     Date: {{$invoice->date}}
 
 Thanks,<br>
-{{ config('bill-me.name') }}<br>
-@endcomponent
+{{ config('bill-me.org_name') }}<br>
+{{config('bill-me.signature_name')}}
+s@endcomponent
