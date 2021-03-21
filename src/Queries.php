@@ -139,6 +139,13 @@ class Queries extends Stats
 
 
 
+    /** Function to get given all  invoices by status */
+    public function getInvoiceByStatus( $status)
+    {
+        return Invoice::where('status', $status)->get();
+    }
+
+
     /**
      * @param $userid
      * @param $status
