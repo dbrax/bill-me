@@ -39,7 +39,41 @@ class Queries extends Stats
 
     public function orders_today()
     {
-        return Order::where('date', date('Y-m-d'))->get();
+        return Order::whereDate('date', date('Y-m-d'))->get();
+    }
+
+
+
+    public function orders_todayByStatus($status)
+    {
+        return Order::whereDate('date', date('Y-m-d'))->where('status',$status)->get();
+    }
+
+
+
+    public function orders_thisMonth()
+    {
+        return Order::whereYear('date', date('Y'))->whereMonth('date', date('m'))->get();
+    }
+
+     public function orders_thisMonthByStatus($status)
+    {
+        return Order::whereYear('date', date('Y'))->whereMonth('date', date('m'))->where('status',$status)->get();
+    }
+
+
+
+    public function orders_thisYear()
+    {
+        return Order::whereYear('date', date('Y'))->get();
+
+    }
+
+
+     public function orders_thisYearByStatus($status)
+    {
+        return Order::whereYear('date', date('Y'))->where('status',$status)->get();
+
     }
 
 
