@@ -119,7 +119,7 @@ class Queries extends Stats
     /** Function to get  orders by status */
     public function getOrdersByStatus( $status)
     {
-        return Order::where('userid', $userid)->where('status', $status)->get();
+        return Order::where('status', $status)->get();
     }
 
 
