@@ -15,5 +15,5 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentMethod extends Model
 {
     protected $guarded = [];
-    protected $table="payment_method"
+    protected $table="payment_method";
 }
