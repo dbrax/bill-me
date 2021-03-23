@@ -327,24 +327,5 @@ class BillMe extends Queries
     }
 
 
-    public function editPaymentMethod($pmethod_id, $pmethod)
-    {
-        $pmethodObj = PaymentMethod::find($pmethod_id);
-        $pmethodObj->pmethod = $pmethod;
-        $pmethodObj->save();
-        return $pmethodObj;
-    }
 
-    
-    public function addPaymentMethod(string $pmethod)
-    {
-
-
-        $pmethodObj = new PaymentMethod;
-        $pmethodObj->pmethod=$pmethod;
-        $pmethodObj->save();
-
-      
-        return $pmethodObj;
-    }
 }
