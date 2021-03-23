@@ -329,10 +329,10 @@ class BillMe extends Queries
 
     public function editPaymentMethod($pmethod_id, $pmethod)
     {
-        $pmethod = PaymentMethod::find($pmethod_id);
-        $pmethod->pmethod = $pmethod;
-        $pmethod->save();
-        return $pmethod;
+        $pmethodObj = PaymentMethod::find($pmethod_id);
+        $pmethodObj->pmethod = $pmethod;
+        $pmethodObj->save();
+        return $pmethodObj;
     }
 
     
@@ -340,8 +340,8 @@ class BillMe extends Queries
     {
 
 
-        $pmethodObj =new PaymentMethod;
-        $pmethodObj->pmethod=$pmethod
+        $pmethodObj = new PaymentMethod;
+        $pmethodObj->pmethod=$pmethod;
         $pmethodObj->save();
 
       
