@@ -340,11 +340,11 @@ class BillMe extends Queries
     {
 
 
-        $pmethod =new PaymentMethod;
-        $pmethod->pmethod=$pmethod
-        $pmethod->save();
+        $pmethodObj =new PaymentMethod;
+        $pmethodObj->pmethod=$pmethod
+        $pmethodObj->save();
 
       
-        return $pmethod;
+        return $pmethodObj;
     }
 }
