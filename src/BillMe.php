@@ -339,8 +339,12 @@ class BillMe extends Queries
     public function addPaymentMethod(string $pmethod)
     {
 
-        return PaymentMethod::create([
-            "pmethod" => $pmethod
-        ]);
+
+        $pmethod =new PaymentMethod;
+        $pmethod->pmethod=$pmethod
+        $pmethod->save();
+
+      
+        return $pmethod;
     }
 }
