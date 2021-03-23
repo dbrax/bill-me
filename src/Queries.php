@@ -18,6 +18,8 @@ use Epmnzava\BillMe\Models\OrderItem;
 use Epmnzava\BillMe\Mail\Client\Invoices\InvoiceCreated;
 use Epmnzava\BillMe\Mail\Client\OrderReceived;
 use Epmnzava\BillMe\Mail\Merchant\NewOrder;
+use Epmnzava\BillMe\Models\PaymentMethod;
+
 
 use Mail;
 
@@ -313,5 +315,15 @@ class Queries extends Stats
     {
 
         return OrderItem::where('order_id', Invoice::where('id', $invoiceid)->first()->orderid)->get();
+    }
+
+    public function getPaymentMethods(){
+
+        return PaymentMethod::all();
+    }
+
+      public function getPaymentMethodById($pid){
+
+        return PaymentMethod::find($id);
     }
 }
