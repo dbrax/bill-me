@@ -20,6 +20,7 @@ use Epmnzava\BillMe\Mail\Merchant\NewOrder;
 use Carbon\Carbon;
 use Epmnzava\BillMe\Mail\Client\Invoices\InvoicePaid;
 use Epmnzava\BillMe\Models\BillingPayment;
+use Epmnzava\BillMe\Models\PaymentMethod;
 use Mail;
 
 class BillMe extends Queries
@@ -41,7 +42,7 @@ class BillMe extends Queries
         int $amount,
         string $payment_method,
         string $notes,
-        string $ordertitle="",
+        string $ordertitle = "",
         string $address,
         array $orderitems,
         $userid = null
@@ -57,7 +58,7 @@ class BillMe extends Queries
         $order->payment_method = $payment_method;
         $order->status = "pending";
         $order->notes = $notes;
-        $order->ordertitle=$ordertitle;
+        $order->ordertitle = $ordertitle;
         $order->address = $address;
         $order->date = date("Y-m-d");
 
@@ -135,7 +136,7 @@ class BillMe extends Queries
         $invoice->lastname = $order->lastname;
         $invoice->mobile_number = $order->mobile_number;
         $invoice->email = $order->email;
-        $invoice->invoice_title=$order->ordertitle;
+        $invoice->invoice_title = $order->ordertitle;
         $invoice->amount = $order->amount;
         $invoice->status = $order->status;
         $invoice->address = $order->address;
@@ -323,5 +324,23 @@ class BillMe extends Queries
     {
 
         $invoice = Invoice::where('orderid', $orderid)->delete();
+    }
+
+
+    public function editPaymentMethod($pmethod_id, $pmethod)
+    {
+        $pmethod = PaymentMethod::find($pmethod_id);
+        $pmethod->pmethod = $pmethod;
+        $pmethod->save();
+        return $pmethod;
+    }
+
+    
+    public function addPaymentMethod(string $pmethod)
+    {
+
+        return PaymentMethod::create([
+            "pmethod" => $pmethod
+        ]);
     }
 }

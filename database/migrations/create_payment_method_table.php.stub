@@ -27,6 +27,7 @@ class CreatePaymentMethodTable extends Migration
         Schema::create('payment_method', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('pmethod'); //required attribute
+            $table->string('description')->nullable(); //required attribute
             $table->string('apikey')->nullable(); //required attribute
             $table->string('apisecret')->nullable(); //required attribute
             $table->string('applicationid')->nullable(); //required attribute
