@@ -208,6 +208,32 @@ class Queries extends Stats
 
 
     /**
+     * @param $status
+     * @return mixed
+     *  Function to get given user invoices by status
+     */
+    public function totalInvoiceByStatus($status)
+    {
+        return Invoice::where('status', $status)->count();
+    }
+
+
+
+
+    /**
+     * @param $status
+     * @return mixed
+     *  Function to get given user invoices by status
+     */
+    public function sumInvoiceByStatus($status)
+    {
+        return Invoice::where('status', $status)->sum('amount');
+    }
+
+
+
+
+    /**
      * @param $userid
      * @param $status
      * @return mixed
