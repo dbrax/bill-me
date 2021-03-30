@@ -220,6 +220,7 @@ class Queries extends Stats
 
 
 
+
     /**
      * @param $status
      * @return mixed
