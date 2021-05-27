@@ -29,7 +29,7 @@ class CreateInvoicesTable extends Migration
             $table->integer('userid')->nullable();
             
             $table->string('orderid'); //required attribute
-            $table->integer('amount'); //required attribute
+            $table->float('amount', 8, 2); //required attribute
             $table->string('firstname'); //required attribute
             $table->string('lastname')->nullable();
             $table->string('mobile_number')->nullable();

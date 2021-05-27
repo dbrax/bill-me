@@ -25,7 +25,7 @@ class InvoiceCreated extends Mailable
 
     public Invoice $invoice;
     public   $pdf;
-    public OrderItem $orderitems;
+    public  $orderitems;
     
 
     public function __construct(Invoice $invoice)

@@ -30,7 +30,7 @@ class CreateBillingPaymentTable extends Migration
             
             $table->string('invoiceid'); //required attribute
             $table->string('orderid'); //required attribute
-            $table->integer('amount'); //required attribute
+            $table->float('amount', 8, 2); //required attribute
             $table->string('status')->default('pending'); //required attribute
             $table->string('trackingid')->nullable(); //required attribute
             $table->date("date");

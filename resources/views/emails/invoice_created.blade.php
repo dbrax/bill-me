@@ -14,15 +14,11 @@ Please find your invoice for Your Order
     
     OrderId: {{$invoice->orderid}}
     Amount: {{$invoice->amount}}
-
+    
    @foreach($orderitems as $item)
-
     OrderItem: {{$item->item}}  
     Amount:    {{$item->amount}}
-
-
    @endforeach
-
 
     E-Mail: {{config('bill-me.your_mail_address')}}
     Notes: {{$invoice->notes}}

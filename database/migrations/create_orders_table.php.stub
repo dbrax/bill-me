@@ -33,7 +33,7 @@ class CreateOrdersTable extends Migration
             $table->string('email')->nullable();
             $table->string('mobile_number')->nullable();
             //order information
-            $table->integer('amount');
+            $table->float('amount', 8, 2);
             $table->string('ordertitle')->nullable();
             $table->string('invoiceid')->nullable();
             $table->string('payment_method')->nullable();
