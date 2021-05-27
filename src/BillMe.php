@@ -39,7 +39,7 @@ class BillMe extends Queries
         string $lastname,
         string $email,
         string $mobile_number,
-        int $amount,
+        float $amount,
         string $payment_method,
         string $notes,
         string $ordertitle = "",
