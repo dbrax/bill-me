@@ -25,14 +25,14 @@ class InvoiceCreated extends Mailable
 
     public Invoice $invoice;
     public   $pdf;
-    public OrderItems $orderitems;
+    public OrderItem $orderitems;
     
 
     public function __construct(Invoice $invoice)
     {
         $this->invoice = $invoice;
 
-        $this->orderitems=OrderItem::where("order_id",$this->invoice->orderid)->get()
+        $this->orderitems=OrderItem::where("order_id",$this->invoice->orderid)->get();
     }
 
     public function build()
