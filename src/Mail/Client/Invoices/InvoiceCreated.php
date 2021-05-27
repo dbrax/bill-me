@@ -11,6 +11,8 @@
 namespace Epmnzava\BillMe\Mail\Client\Invoices;
 
 use Epmnzava\BillMe\Models\Order;
+use Epmnzava\BillMe\Models\OrderItem;
+
 use Epmnzava\BillMe\Models\Invoice;
 use PDF;
 use Illuminate\Bus\Queueable;
@@ -23,11 +25,14 @@ class InvoiceCreated extends Mailable
 
     public Invoice $invoice;
     public   $pdf;
+    public OrderItems $orderitems;
     
 
     public function __construct(Invoice $invoice)
     {
         $this->invoice = $invoice;
+
+        $this->orderitems=OrderItem::where("order_id",$this->invoice->orderid)->get()
     }
 
     public function build()

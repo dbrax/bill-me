@@ -32,7 +32,10 @@ return [
 
   'due_date_duration' => env('BILL_ME_INVOICE_DUE_DATE', '5'),
 
+
   'currency'=>env('BILL_ME_CURRENCY','USD'),
+
+  
 
   'signature_name'=>env('BILL_ME_EMAIL_SIGNATURE_NAME','David Mrema')
 
