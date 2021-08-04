@@ -30,7 +30,19 @@ composer require epmnzava/bill-me
 ``` php
 // how to use the package coming soon
 
+// without userid
+BillMe::createOrder("emmanuel","Mnzava","epmnzava@gmail.com","","200","paypal","","Brooklyn Park",[["amount"=>"200","quantity"=>1,"Item"=>"Replacement Fee","description"=>"purchased moto moto"]]);
+
+
+
+//with userid
+
 BillMe::createOrder("emmanuel","Mnzava","epmnzava@gmail.com","","200","paypal","","Brooklyn Park",[["amount"=>"200","quantity"=>1,"Item"=>"Replacement Fee","description"=>"purchased moto moto"]],2);
+
+
+
+// with userid and orderid
+BillMe::createOrder("emmanuel","Mnzava","epmnzava@gmail.com","","200","paypal","","Brooklyn Park",[["amount"=>"200","quantity"=>1,"Item"=>"Replacement Fee","description"=>"purchased moto moto"]],2,"3243355");
 ```
 
 ### Testing
