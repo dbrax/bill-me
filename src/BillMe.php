@@ -26,7 +26,10 @@ use Mail;
 class BillMe extends Queries
 {
 
-
+     public function __construct()
+     {
+         
+     }
 
     /**
      * A function that triggers order creation
@@ -45,10 +48,17 @@ class BillMe extends Queries
         string $ordertitle = "",
         string $address,
         array $orderitems,
-        $userid = null
+        $userid = null,
+        $orderid=null
     ): Order {
 
         $order = new Order;
+
+        if(!empty($orderid))
+        $order->id=$orderid;
+
+
+
         $order->userid = $userid;
         $order->firstname = $firstname;
         $order->lastname = $lastname;
