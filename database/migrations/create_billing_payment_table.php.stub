@@ -33,6 +33,8 @@ class CreateBillingPaymentTable extends Migration
             $table->float('amount', 8, 2); //required attribute
             $table->string('status')->default('pending'); //required attribute
             $table->string('trackingid')->nullable(); //required attribute
+            $table->string('referenceid')->nullable();
+
             $table->date("date");
             $table->string('payment_method')->nullable();
 

@@ -26,10 +26,9 @@ use Mail;
 class BillMe extends Queries
 {
 
-     public function __construct()
-     {
-         
-     }
+    public function __construct()
+    {
+    }
 
     /**
      * A function that triggers order creation
@@ -48,15 +47,15 @@ class BillMe extends Queries
         string $ordertitle = "",
         string $address,
         array $orderitems,
+        string $referenceid = null,
         $userid = null,
-        $orderid=null
+        $orderid = null
     ): Order {
 
         $order = new Order;
 
-        if(!empty($orderid))
-        $order->id=$orderid;
-
+        if (!empty($orderid))
+           $order->orderid = $orderid;
 
 
         $order->userid = $userid;
@@ -68,6 +67,7 @@ class BillMe extends Queries
         $order->payment_method = $payment_method;
         $order->status = "pending";
         $order->notes = $notes;
+        $order->referenceid=$referenceid;
         $order->ordertitle = $ordertitle;
         $order->address = $address;
         $order->date = date("Y-m-d");
@@ -111,6 +111,8 @@ class BillMe extends Queries
         $bill_payment->invoiceid = $invoice->id;
         $bill_payment->orderid = $order->id;
         $bill_payment->amount = $invoice->amount;
+        $bill_payment->referenceid=$order->referenceid;
+
         $bill_payment->date = $order->date;
         $bill_payment->save();
 
@@ -335,7 +337,4 @@ class BillMe extends Queries
 
         $invoice = Invoice::where('orderid', $orderid)->delete();
     }
-
-
-
 }

@@ -36,6 +36,8 @@ class CreateOrdersTable extends Migration
             $table->float('amount', 8, 2);
             $table->string('ordertitle')->nullable();
             $table->string('invoiceid')->nullable();
+            $table->string('referenceid')->nullable();
+
             $table->string('payment_method')->nullable();
             $table->string('status')->default('pending');
             $table->date('date');
