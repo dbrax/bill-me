@@ -47,7 +47,6 @@ class BillMe extends Queries
         string $ordertitle = "",
         string $address,
         array $orderitems,
-        string $referenceid = null,
         $userid = null,
         $orderid = null
     ): Order {
@@ -67,7 +66,6 @@ class BillMe extends Queries
         $order->payment_method = $payment_method;
         $order->status = "pending";
         $order->notes = $notes;
-        $order->referenceid=$referenceid;
         $order->ordertitle = $ordertitle;
         $order->address = $address;
         $order->date = date("Y-m-d");
@@ -111,7 +109,7 @@ class BillMe extends Queries
         $bill_payment->invoiceid = $invoice->id;
         $bill_payment->orderid = $order->id;
         $bill_payment->amount = $invoice->amount;
-        $bill_payment->referenceid=$order->referenceid;
+
 
         $bill_payment->date = $order->date;
         $bill_payment->save();
