@@ -15,7 +15,7 @@ Was successful.You can now enjoy our service
     Company: {{config('bill-me.org_name')}}
 
     Item: {{$invoice->invoice_title}}
-    Invoice Status: <span style="color:red"> Paid </span>
+    Invoice Status:  Paid 
     OrderId: {{$invoice->orderid}}
     Amount: {{$invoice->amount}}
     E-Mail: {{config('bill-me.your_mail_address')}}
