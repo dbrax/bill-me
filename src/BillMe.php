@@ -54,7 +54,7 @@ class BillMe extends Queries
         $order = new Order;
 
         if (!empty($orderid))
-           $order->orderid = $orderid;
+            $order->orderid = $orderid;
 
 
         $order->userid = $userid;
@@ -172,6 +172,30 @@ class BillMe extends Queries
 
 
     /**
+     * Function gets @param invoiceid and updates order , invoice and billing record that the user has cancelled
+     */
+    public function invoice_cancelled($invoiceid): Invoice
+    {
+
+        $invoice = Invoice::find($invoiceid);
+        $invoice->status = "cancelled";
+        $invoice->save();
+
+        $order = Order::find($invoice->orderid);
+        $order->status = "cancelled";
+        $order->save();
+
+        $billing = $this->cancelled_billing_record($invoiceid);
+
+
+
+        return  $invoice;
+    }
+
+
+
+
+    /**
      * Function gets @param invoiceid and updates order , invoice and billing record that the user has paid
      */
     public function invoice_paid($invoiceid): Invoice
@@ -213,6 +237,16 @@ class BillMe extends Queries
     }
 
 
+
+    public function cancelled_billing_record($invoiceid): BillingPayment
+    {
+
+        $billing_record = BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
+        $billing_record->status = "cancelled";
+        $billing_record->save();
+
+        return  $billing_record;
+    }
 
     public function paid_billing_record($invoiceid): BillingPayment
     {
