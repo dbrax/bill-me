@@ -25,27 +25,19 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
-           //customer personal information 
             $table->string('firstname')->nullable();
-            //if the user has loggin you can save the user id
             $table->integer('userid')->nullable();
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile_number')->nullable();
-            //order information
             $table->float('amount', 8, 2);
             $table->string('ordertitle')->nullable();
-            $table->string('invoiceid')->nullable();
             $table->string('referenceid')->nullable();
-
             $table->string('payment_method')->nullable();
             $table->string('status')->default('pending');
             $table->date('date');
             $table->text('notes')->nullable();
             $table->text('address')->nullable();
-
-
-
             $table->timestamps();
         });
     }

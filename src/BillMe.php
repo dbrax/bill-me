@@ -48,15 +48,11 @@ class BillMe extends Queries
         string $address,
         array $orderitems,
         $userid = null,
-        $orderid = null
+        $referenceid = null
     ): Order {
 
         $order = new Order;
-
-        if (!empty($orderid))
-            $order->orderid = $orderid;
-
-
+        $order->referenceid = $referenceid;
         $order->userid = $userid;
         $order->firstname = $firstname;
         $order->lastname = $lastname;
@@ -100,21 +96,22 @@ class BillMe extends Queries
     }
 
 
-    public function record_transaction($order, $invoice, $amountpaid)
+    public function record_payment($order, $amountpaid)
     {
 
+        $invoice = Invoice::find($order->invoiceid);
         if (BillingPayment::where('orderid', $order->id)->count() < 0) {
             $transaction = new BillingPayment;
             $transaction->userid = $order->userid;
-            $transaction->invoiceid = $invoice->id;
+            $transaction->invoiceid = $order->invoiceid;
             $transaction->orderid = $order->id;
             $transaction->amount = $amountpaid;
 
-            $transaction->balance_before_payment = $invoice->amount;
-            $transaction->balance_after_payment = $invoice->amount - $amountpaid;
+            $transaction->balance_before_payment = $order->amount;
+            $transaction->balance_after_payment = $order->amount - $amountpaid;
             $transaction->referenceid = $order->id;
 
-            if ($invoice->amount == $amountpaid)
+            if ($order->amount == $amountpaid)
                 $transaction->status = "paid";
 
 
@@ -122,6 +119,7 @@ class BillMe extends Queries
             $transaction->date = $order->date;
             $transaction->save();
         } else {
+
             $transaction = BillingPayment::find(BillingPayment::where('orderid', $order->id)->first()->id);
             if ($transaction->balance_after_payment > 0) {
                 $transaction->userid = $order->userid;

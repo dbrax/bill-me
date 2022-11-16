@@ -24,31 +24,19 @@ class CreateBillingPaymentTable extends Migration
     {
         Schema::create('billing_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-                //if the user has loggin you can save the user id
             $table->integer('userid')->nullable();
-            
-            $table->string('invoiceid'); //required attribute
-            $table->string('orderid'); //required attribute
-            $table->string('status')->default('pending'); //required attribute
-            $table->string('trackingid')->nullable(); //required attribute
+            $table->string('invoiceid')->nullable(); 
+            $table->string('orderid'); 
+            $table->string('status')->default('pending'); 
+            $table->string('trackingid')->nullable(); 
+            $table->string('receipt')->nullable();
             $table->string('referenceid')->nullable();
-
             $table->bigInteger("amount")->nullable();
             $table->bigInteger("balance_before_payment")->nullable();
             $table->bigInteger("balance_after_payment")->nullable();
             $table->bigInteger("msisdn")->nullable();
-
-
-
-
             $table->date("date");
             $table->string('payment_method')->nullable();
-
-
-
-
-
             $table->timestamps();
         });
     }
