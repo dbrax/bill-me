@@ -100,7 +100,7 @@ class BillMe extends Queries
     {
 
         $invoice = Invoice::find($order->invoiceid);
-        if (BillingPayment::where('orderid', $order->id)->count() < 0) {
+        if (BillingPayment::where('orderid', $order->id)->count() < 1) {
             $transaction = new BillingPayment;
             $transaction->userid = $order->userid;
             $transaction->invoiceid = $order->invoiceid;

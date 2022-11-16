@@ -30,7 +30,7 @@ class CreateOrdersTable extends Migration
             $table->string('lastname')->nullable();
             $table->string('email')->nullable();
             $table->string('mobile_number')->nullable();
-            $table->float('amount', 8, 2);
+            $table->bigInteger("amount")->nullable();
             $table->string('ordertitle')->nullable();
             $table->string('referenceid')->nullable();
             $table->string('payment_method')->nullable();
