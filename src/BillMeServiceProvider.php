@@ -43,7 +43,7 @@ class BillMeServiceProvider extends ServiceProvider
 
 
             //publishing migrations here..
-            if (!class_exists('CreateOrdersTable') && !class_exists('CreateOrderItemsTable') && !class_exists('CreateInvoicesTable') && !class_exists('CreatePaymentMethodTable') && !class_exists('CreatePaymentsTable') && !class_exists('CreateTransactionsTable')) {
+            if (!class_exists('CreateOrdersTable') && !class_exists('CreateOrderItemsTable') && !class_exists('CreateInvoicesTable') && !class_exists('CreatePaymentMethodTable') && !class_exists('CreatePaymentsTable')) {
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_orders_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_orders_table.php'),
 
@@ -53,8 +53,7 @@ class BillMeServiceProvider extends ServiceProvider
                     __DIR__ . '/../database/migrations/create_billing_payment_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_billing_payment_table.php'),
                     __DIR__ . '/../database/migrations/create_receipts_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_receipts_table.php'),
                     __DIR__ . '/../database/migrations/create_payment_method_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_payment_method_table.php'),
-                    __DIR__ . '/../database/migrations/add_orderid_on_orders_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_add_orderid_table.php'),
-                    __DIR__ . '/../database/migrations/create_transaction_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_transaction_table.php'),
+                    __DIR__ . '/../database/migrations/add_orderid_on_orders_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_add_orderid_table.php')
 
 
 
