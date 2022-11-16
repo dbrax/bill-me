@@ -94,11 +94,58 @@ class BillMe extends Queries
         if (config('bill-me.send_mail') == 1)
             $this->sendMailNotifications($order, $invoice);
 
-        $billing_record = $this->add_billing_record($order, $invoice);
+
 
         return $order;
     }
 
+
+    public function record_transaction($order, $invoice, $amountpaid)
+    {
+
+        if (BillingPayment::where('orderid', $order->id)->count() < 0) {
+            $transaction = new BillingPayment;
+            $transaction->userid = $order->userid;
+            $transaction->invoiceid = $invoice->id;
+            $transaction->orderid = $order->id;
+            $transaction->amount = $amountpaid;
+
+            $transaction->balance_before_payment = $invoice->amount;
+            $transaction->balance_after_payment = $invoice->amount - $amountpaid;
+            $transaction->referenceid = $order->id;
+
+            if ($invoice->amount == $amountpaid)
+                $transaction->status = "paid";
+
+
+
+            $transaction->date = $order->date;
+            $transaction->save();
+        } else {
+            $transaction = BillingPayment::find(BillingPayment::where('orderid', $order->id)->first()->id);
+            if ($transaction->balance_after_payment > 0) {
+                $transaction->userid = $order->userid;
+                $transaction->invoiceid = $invoice->id;
+                $transaction->orderid = $order->id;
+                $transaction->amount = $amountpaid;
+
+                $transaction->balance_before_payment = $invoice->amount;
+                $transaction->balance_after_payment = $invoice->amount - $amountpaid;
+                $transaction->referenceid = $order->id;
+
+                if ($invoice->amount == $amountpaid)
+                    $transaction->status = "paid";
+
+
+
+                $transaction->date = $order->date;
+                $transaction->save();
+            }
+        }
+
+
+        return $transaction;
+    }
 
 
     public function add_billing_record(Order $order, Invoice $invoice): BillingPayment
