@@ -34,12 +34,11 @@ class CreateBillingPaymentTable extends Migration
             $table->string('trackingid')->nullable(); //required attribute
             $table->string('referenceid')->nullable();
 
-            $table->bigInteger("amount_paid");
-            $table->bigInteger("balance_before_payment");
-            $table->bigInteger("balance_after_payment");
-            $table->integer('status')->nullable();
+            $table->bigInteger("amount")->nullable();
+            $table->bigInteger("balance_before_payment")->nullable();
+            $table->bigInteger("balance_after_payment")->nullable();
             $table->string('status_description')->nullable();
-            $table->bigInteger("msisdn")->nullable()->change();
+            $table->bigInteger("msisdn")->nullable();
 
 
 
