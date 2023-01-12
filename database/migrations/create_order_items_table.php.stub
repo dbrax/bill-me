@@ -27,8 +27,8 @@ class CreateOrderItemsTable extends Migration
             $table->string('order_id');
             $table->float('amount', 8, 2);
             $table->integer('quantity')->default(1);
-            $table->string("item");
-            $table->string("item_text");
+            $table->string("item")->nullable();
+            $table->string("item_text")->nullable();
             $table->string("extra_details")->nullable();
             $table->date("date");
 
