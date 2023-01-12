@@ -77,7 +77,8 @@ class BillMe extends Queries
                 $orderItem->amount = $orderitems[$i]['amount'];
                 $orderItem->quantity = $orderitems[$i]['quantity'];
                 $orderItem->item = $orderitems[$i]['item'];
-                $orderItem->extra_details = serialize($orderitems[$i]['extra_details']);
+                $orderItem->item_text = $orderitems[$i]['item_text'];
+                $orderItem->extra_details = json_encode($orderitems[$i]['extra_details']);
                 $orderItem->date = date("Y-m-d");
 
                 $orderItem->save();
@@ -251,7 +252,7 @@ class BillMe extends Queries
         $invoice->save();
 
         $order = Order::find($invoice->orderid);
-        $order->status = "completed";
+        $order->status = "paid";
         $order->save();
 
         $billing = $this->paid_billing_record($invoiceid);
@@ -295,6 +296,7 @@ class BillMe extends Queries
 
     public function paid_billing_record($invoiceid): BillingPayment
     {
+
 
         $billing_record = BillingPayment::find(BillingPayment::where('invoiceid', $invoiceid)->first()->id);
         $billing_record->status = "paid";
