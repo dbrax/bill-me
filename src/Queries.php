@@ -48,7 +48,7 @@ class Queries extends Stats
 
     public function orders_todayByStatus($status)
     {
-        return Order::whereDate('date', date('Y-m-d'))->where('status',$status)->get();
+        return Order::whereDate('date', date('Y-m-d'))->where('status', $status)->get();
     }
 
 
@@ -58,9 +58,9 @@ class Queries extends Stats
         return Order::whereYear('date', date('Y'))->whereMonth('date', date('m'))->get();
     }
 
-     public function orders_thisMonthByStatus($status)
+    public function orders_thisMonthByStatus($status)
     {
-        return Order::whereYear('date', date('Y'))->whereMonth('date', date('m'))->where('status',$status)->get();
+        return Order::whereYear('date', date('Y'))->whereMonth('date', date('m'))->where('status', $status)->get();
     }
 
 
@@ -68,14 +68,12 @@ class Queries extends Stats
     public function orders_thisYear()
     {
         return Order::whereYear('date', date('Y'))->get();
-
     }
 
 
-     public function orders_thisYearByStatus($status)
+    public function orders_thisYearByStatus($status)
     {
-        return Order::whereYear('date', date('Y'))->where('status',$status)->get();
-
+        return Order::whereYear('date', date('Y'))->where('status', $status)->get();
     }
 
 
@@ -96,7 +94,7 @@ class Queries extends Stats
 
     public function completed_orders()
     {
-        return Order::where('status', "completed")->get();
+        return Order::where('status', "paid")->get();
     }
 
     public function getOrderById($orderid)
@@ -153,7 +151,7 @@ class Queries extends Stats
 
 
     /** Function to get  orders by status */
-    public function getOrdersByStatus( $status)
+    public function getOrdersByStatus($status)
     {
         return Order::where('status', $status)->get();
     }
@@ -186,7 +184,7 @@ class Queries extends Stats
 
 
     /** Function to get given all  invoices by status */
-    public function getInvoiceByStatus( $status)
+    public function getInvoiceByStatus($status)
     {
         return Invoice::where('status', $status)->get();
     }
@@ -198,7 +196,7 @@ class Queries extends Stats
      * @return mixed
      * Function to get given user invoices by status
      */
-    public function sumUserInvoiceByStatus($userid, $status) : int
+    public function sumUserInvoiceByStatus($userid, $status): int
     {
         return Invoice::where('userid', $userid)->where('status', $status)->sum('amount');
     }
@@ -312,7 +310,7 @@ class Queries extends Stats
 
 
 
- public function getBillingHistoryByStatus($status)
+    public function getBillingHistoryByStatus($status)
     {
 
         return BillingPayment::where('status', $status)->get();
@@ -344,17 +342,19 @@ class Queries extends Stats
         return OrderItem::where('order_id', Invoice::where('id', $invoiceid)->first()->orderid)->get();
     }
 
-    public function getPaymentMethods(){
+    public function getPaymentMethods()
+    {
 
         return PaymentMethod::all();
     }
 
-      public function getPaymentMethodById($pid){
+    public function getPaymentMethodById($pid)
+    {
 
         return PaymentMethod::find($id);
     }
 
-        public function editPaymentMethod($pmethod_id, $pmethod)
+    public function editPaymentMethod($pmethod_id, $pmethod)
     {
         $pmethodObj = PaymentMethod::find($pmethod_id);
         $pmethodObj->pmethod = $pmethod;
@@ -362,18 +362,16 @@ class Queries extends Stats
         return $pmethodObj;
     }
 
-    
+
     public function addPaymentMethod(string $pmethod)
     {
 
 
         $pmethodObj = new PaymentMethod;
-        $pmethodObj->pmethod=$pmethod;
+        $pmethodObj->pmethod = $pmethod;
         $pmethodObj->save();
 
-      
+
         return $pmethodObj;
     }
-
-    
 }

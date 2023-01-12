@@ -58,18 +58,18 @@ class Stats
 
         return Invoice::where('status', 'pending')->sum('amount');
     }
-      */
+     */
 
     public function total_completed_orders()
     {
-        return Order::where('status', 'completed')->count();
+        return Order::where('status', 'paid')->count();
     }
 
 
-    public function paid_payments(){
+    public function paid_payments()
+    {
 
         return BillingPayment::where('status', 'paid')->get();
-
     }
 
     /**
